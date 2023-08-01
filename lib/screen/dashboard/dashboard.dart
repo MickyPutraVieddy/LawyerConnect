@@ -1,214 +1,228 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lomba_gemastik/screen/Asuransi/asuransi.dart';
+import 'package:lomba_gemastik/screen/Beranda/beranda.dart';
+import 'package:lomba_gemastik/screen/Kasus/kasus.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
-
   @override
   State<Dashboard> createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  //ini index gak boleh di context "untuk indicatorslide"
-  int _current = 0;
+  // untuk index bottombar
+  int _selected = 0;
+
+  // list untuk textnya
+
+  //untuk list widget
 
   @override
   Widget build(BuildContext context) {
-    // untuk width mentok
+// untuk list width nya
     var width = MediaQuery.of(context).size.width;
-
-    // ini untuk heigth mentok
-    // ignore: unused_local_variable
+// untuk list heightnya
     var height = MediaQuery.of(context).size.height;
 
-    // untuk list gambar
-    final List<String> gambar = [
-      'lib/image/screenslide/banner/Banner.png',
-      'lib/image/screenslide/banner/Banner.png',
-      'lib/image/screenslide/banner/Banner.png',
-      'lib/image/screenslide/banner/Banner.png'
+    final List<Widget> _widgetoptions = <Widget>[
+      Berandascreen(),
+      Pengacarascreen(),
+      Kasusscreen(),
+      AsuransiScreen()
     ];
-    final CarouselController _controller = CarouselController();
-    // ignore: unused_local_variable
-    final pagecontroller = PageController();
 
     return Scaffold(
-      bottomNavigationBar: GNav(
-        tabs: [
-          GButton(
-            icon: Icons.home,
-            text: 'Beranda',
+        bottomNavigationBar: GNav(
+          tabs: [
+            GButton(
+              icon: Icons.home,
+              text: 'Beranda',
+            ),
+            GButton(
+              icon: Icons.groups,
+              text: 'Pengacara',
+            ),
+            GButton(
+              icon: Icons.find_in_page,
+              text: 'Kasus terkini',
+            ),
+            GButton(
+              icon: Icons.health_and_safety,
+              text: 'Asuransi',
+            ),
+          ],
+          selectedIndex: _selected,
+          onTabChange: (value) {
+            setState(() {
+              _selected = value;
+            });
+          },
+          // untuk tulisanya gap
+          gap: 8,
+          // untuk background bar
+          backgroundColor: Colors.white70.withOpacity(0.1),
+          activeColor: Colors.orange,
+        ),
+        body:
+            SingleChildScrollView(child: _widgetoptions.elementAt(_selected)));
+  }
+}
+
+class Pengacarascreen extends StatelessWidget {
+  const Pengacarascreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // untuk list width nya
+    var width = MediaQuery.of(context).size.width;
+// untuk list heightnya
+    var height = MediaQuery.of(context).size.height;
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 20),
+          alignment: Alignment.center,
+          height: 120,
+          width: width,
+          color: Colors.white,
+          child: Text(
+            "Pengacara",
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
-          GButton(
-            icon: Icons.groups,
-            text: 'Pengacara',
-          ),
-          GButton(
-            icon: Icons.find_in_page,
-            text: 'Kasus terkini',
-          ),
-          GButton(
-            icon: Icons.health_and_safety,
-            text: 'Asuransi',
-          ),
-        ],
-        // untuk tulisanya gap
-        gap: 8,
-        // untuk background bar
-        backgroundColor: Colors.white70.withOpacity(0.1),
-        activeColor: Colors.orange,
-      ),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-              padding: EdgeInsets.only(top: 40),
-              alignment: AlignmentDirectional.centerStart,
-              height: 180,
-              color: Colors.indigo.shade900,
-              width: width,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('lib/image/screenslide/logo/Avatar.png'),
+        ),
+        Container(
+          height: height,
+          padding: EdgeInsets.all(10),
+          child: GridView.count(
+            crossAxisCount: 2,
+            childAspectRatio: 1 / 1.5,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/pengacara1');
+                },
+                child: Card(
+                  elevation: 2,
+                  shadowColor: Colors.green,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Halo, Daffa!",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 85,
-                  ),
-                  Container(
-                    height: 45,
-                    width: 45,
-                    child: IconButton(
-                      // harus menggunakan flutter_svg untuk icon
-                      icon: SvgPicture.asset(
-                        'lib/image/screenslide/icon/email.svg',
-                        color: Colors.white,
-                        width: 45,
-                        height: 45,
-                      ),
-                      onPressed: () {},
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.withOpacity(0.25),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Container(
-                    height: 45,
-                    width: 45,
-                    child: IconButton(
-                      // harus menggunakan flutter_svg untuk icon
-                      icon: SvgPicture.asset(
-                        'lib/image/screenslide/icon/loncengkus.svg',
-                        color: Colors.white,
-                        width: 45,
-                        height: 45,
-                      ),
-                      onPressed: () {},
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.withOpacity(0.25),
-                    ),
-                  )
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          CarouselSlider(
-            items: gambar
-                .map((item) => Container(
-                      child: Center(
+                  child: Column(
+                    children: [
+                      Hero(
+                          tag: 'gambar',
                           child: Image.asset(
-                        item,
-                        fit: BoxFit.cover,
-                        height: 400,
-                        width: width,
-                      )),
-                    ))
-                .toList(),
-            carouselController: _controller,
-            options: CarouselOptions(
-                autoPlay: true,
-                enlargeCenterPage: true,
-                aspectRatio: 2.0,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: gambar.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => _controller.animateToPage(entry.key),
-                child: Container(
-                  width: _current == entry.key ? 10 : 11,
-                  height: 12.0,
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color:
-                          _current == entry.key ? Colors.orange : Colors.grey),
+                              "lib/image/screenslide/gambar/pengecara1.png")),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        height: 2,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        "Monica Cania",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        "Firma Hukum Budi Dharma",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              );
-            }).toList(),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 100),
-            child: Text(
-              "Bantuan hukum terdekat",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 45),
-            child: Text(
-              'Berikut adalah bantuan hukum terdekat dari lokasi kamu.',
-              style: TextStyle(
-                fontSize: 16,
               ),
-            ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/pengacara2');
+                },
+                child: Card(
+                  elevation: 2,
+                  shadowColor: Colors.green,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    children: [
+                      Hero(
+                          tag: 'gambar',
+                          child: Image.asset(
+                              "lib/image/screenslide/gambar/pengacara2.png")),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        height: 2,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        "Monica Cania",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        "Firma Hukum Budi Dharma",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/pengacara3');
+                },
+                child: Card(
+                  elevation: 2,
+                  shadowColor: Colors.green,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    children: [
+                      Hero(
+                          tag: 'gambar',
+                          child: Image.asset(
+                              "lib/image/screenslide/gambar/pengacara3.png")),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        height: 2,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        "Monica Cania",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        "Firma Hukum Budi Dharma",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 20),
-            height: 250,
-            width: 350,
-            child: GestureDetector(
-              onTap: () {
-                print("hello");
-              },
-              child: Image.asset('lib/image/screenslide/gambar/map.png'),
-            ),
-          )
-        ]),
-      ),
+        )
+      ],
     );
   }
 }

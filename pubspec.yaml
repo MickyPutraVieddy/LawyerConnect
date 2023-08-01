@@ -50,6 +50,9 @@ dev_dependencies:
   carousel_slider: ^4.2.1
   flutter_svg: ^2.0.7
   google_nav_bar: ^5.0.6
+  sticky_headers: ^0.3.0+2
+  intl: ^0.18.1
+  lottie: ^2.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -61,7 +64,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   assets:
   # asset untuk slide 1 
@@ -76,11 +78,31 @@ flutter:
     - lib/image/screenslide/logo/google.jpg
     - lib/image/screenslide/logo/lonceng.png
     - lib/image/screenslide/banner/Banner.png
+    - lib/image/screenslide/gambar/sliders.png
+    - lib/image/screenslide/gambar/pengecara1.png
+    - lib/image/screenslide/gambar/pengacara2.png
+    - lib/image/screenslide/gambar/pengacara3.png
     - lib/image/screenslide/icon/loncengkus.svg
     - lib/image/screenslide/icon/email.svg
     - lib/image/screenslide/icon/kasus.svg
     - lib/image/screenslide/icon/asuransi.svg
     - lib/image/screenslide/icon/groups.svg
+
+    # logo insurance
+    - lib/image/screenslide/logo/logoinsurance1.png
+    - lib/image/screenslide/logo/logoinsurance2.png
+    - lib/image/screenslide/logo/logoinsurance3.png
+    - lib/image/screenslide/logo/logoinsurance4.png
+
+    # logo metode pembayaran
+    - lib/image/screenslide/pembayaran/BCA.png
+    - lib/image/screenslide/pembayaran/BNI.png
+    - lib/image/screenslide/pembayaran/Mandiri.png
+    - lib/image/screenslide/pembayaran/Permata.png
+
+    # untuk lottie
+    - lib/models/lottie/checklist.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
