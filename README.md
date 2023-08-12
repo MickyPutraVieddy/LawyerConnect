@@ -1,16 +1,1 @@
-# lomba_gemastik
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![IMG_2502](https://github.com/MickyPutraVieddy/LawyerConnect/assets/107601196/5706c85f-df4a-477f-8ba0-e4f81baf9427)
